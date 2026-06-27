@@ -64,7 +64,12 @@
   <div class="container">
     <h1>Vicmailer</h1>
     <p>Email outreach + sales generation system</p>
-    <p class="price">£2000</p>
+  <div style="display: inline-block; background: #e879f9; color: #050510; padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: bold; letter-spacing: 1px; margin-bottom: 10px;">
+  🚀 INTRODUCTORY OFFER — LIMITED TIME
+  </div
+    <p class="price" style="font-size: 2rem; color: #22d3ee; text-decoration: line-through; opacity: 0.5;">£2000</p>
+    <p class="price" style="font-size: 3.5rem; color: #22d3ee; font-weight: bold;">£1000</p>
+    <p style="font-size: 0.8rem; color: #e879f9;">Introductory price — ends soon</p>
     <ul>
       <li>Complete email outreach system</li>
       <li>Generate quality leads</li>
@@ -75,7 +80,30 @@
     </ul>
     <a href="https://fixseo.gumroad.com/l/vicmailer" class="btn">Buy Now</a>
     <p class="footer">One payment. Lifetime access. No subscription.</p>
-  </div>
+  </div
+<p style="font-size: 0.8rem; color: #22d3ee; margin-top: 10px;" id="countdown"></p>
+
+<script>
+  // Set the date we're counting down to (30 days from now)
+  var countDownDate = new Date();
+  countDownDate.setDate(countDownDate.getDate() + 30);
+
+  var x = setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate.getTime() - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("countdown").innerHTML = "⏳ " + days + "d " + hours + "h " + minutes + "m remaining";
+    
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("countdown").innerHTML = "🎯 OFFER EXPIRED";
+    }
+  }, 1000);
+</script>
 </body>
 </html>
 
