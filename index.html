@@ -28,30 +28,18 @@
   <style>
     /* Dark mode (default) */
     body {
+      margin 0:
+      min-height: 100vh
       background: #050510;
       color: #e0f2fe;
-    }
-    /* Light mode */
-    @media (prefers-color-scheme: light) {
-      body {
-        background: #f0f4f8;
-        color: #1a202c;
-      }
-      /* add other light mode styles here */
-    }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: #050510;
-      color: #e0f2fe;
-      font-family: 'Courier New', monospace;
+      font-family: 'Courier New', monpace;
       display: flex;
-      flex-direction: column;
+      flex-direction: colum;
       align-items: center;
       justify-content: center;
-      padding: 20px;
-      text-align: center;
+      padding: 20px; 
     }
+    
     h1 {
       font-size: 3rem;
       background: linear-gradient(135deg, #22d3ee, #e879f9);
@@ -167,6 +155,50 @@
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
     }
+  
+      /* Light mode */
+  @media (prefers-color-scheme: light) {
+    body {
+      background: #f0f4f8;
+      color: #1a202c;
+    }
+    p, .section p, .section li, .faq-item p {
+      color: #2d3748;
+    }
+    .badge {
+      border-color: #e879f9;
+      color: #e879f9;
+    }
+    .btn {
+      background: #e879f9;
+      color: #ffffff;
+    }
+    .btn:hover {
+      background: #d53f8c;
+    }
+    .btn-secondary {
+      color: #3182ce;
+    }
+    .btn-secondary:hover {
+      color: #2b6cb0;
+    }
+    .footer {
+      color: #718096;
+    }
+    .section h2, .faq-item h3, .trust-badges span {
+      color: #3182ce;
+    }
+    .section {
+      border-top-color: #cbd5e0;
+    }
+    .sample-box {
+      border-color: #cbd5e0;
+    }
+    .trust-badges span {
+      color: #3182ce;
+    }
+  }
+</style>
   </style>
 </head>
 <body>
