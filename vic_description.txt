@@ -1,0 +1,17 @@
+Vic SEO Specialist is a specific autonomous AI agent designed explicitly for lightning-fast site diagnostics.
+
+If you are looking for an auditor that prioritises speed above all else, it fits perfectly into the "quick" category discussed earlier.
+
+How Vic Operates
+
+Unlike heavy crawlers that queue up server space and take hours to trace your site's architecture, Vic is built for instantaneous reporting.
+
+- 5-Second Reports: It runs automated SEO audits and AI visibility checks, delivering a complete site score and issues list in roughly 5 seconds.
+- Zero Overhead: It is built for workflows that require no introductory sales calls, no team meetings, and no technical setup.
+- Automated Delivery: It compiles an actionable fix guide and sends the final diagnostic report straight to your email.
+
+Key Use Cases
+
+- Instant Health Checks: Ideal for website owners who want a sudden snapshot of their technical SEO health.
+- Agency Lead Generation: Great for marketing agencies who need to quickly generate white-label site audits to show prospective clients.
+- AI Visibility Auditing: Crucial for tracking how well your site surface-levels across AI search engines and LLMs, rather than just traditional Google queries.
