@@ -209,6 +209,61 @@
     }
   </style>
 </head>
+
+<div style="margin-top: 30px; max-width: 400px; margin-left: auto; margin-right: auto; background: #0a0a1a; padding: 20px; border-radius: 8px; border: 1px solid #22d3ee33;">
+  <h3 style="color: #22d3ee; font-size: 1rem; margin-bottom: 10px;">Try the free AI visibility check</h3>
+  
+  <input id="vic-free-url" type="url" placeholder="https://yourwebsite.com" style="width: 100%; padding: 12px; margin-bottom: 10px; background: #050510; color: #ffffff; font-size: 1rem; border: 1px solid #22d3ee33; border-radius: 4px; box-sizing: border-box; font-family: inherit;" />
+  
+  <input id="vic-free-email" type="email" placeholder="your@email.com" style="width: 100%; padding: 12px; margin-bottom: 12px; background: #050510; color: #ffffff; font-size: 1rem; border: 1px solid #22d3ee33; border-radius: 4px; box-sizing: border-box; font-family: inherit;" />
+  
+  <button onclick="triggerFreeVicAudit()" style="width: 100%; padding: 12px; background: #e879f9; color: #ffffff; font-weight: bold; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; font-family: inherit;">Run Free Check</button>
+  
+  <p style="color: #334155; font-size: 0.7rem; margin-top: 12px;">No spam. No calls. Report in 5 seconds.</p>
+</div>
+
+<script>
+function triggerFreeVicAudit() {
+  var url = document.getElementById('vic-free-url').value;
+  var email = document.getElementById('vic-free-email').value;
+
+  if (!url || !email) {
+    alert('Please enter both URL and email.');
+    return;
+  }
+
+  var btn = event.target;
+  var originalText = btn.textContent;
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  fetch('https://vic.a.pinggy.link/v1/audit', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-API-Key': 'vic-free-key-2025'
+    },
+    body: JSON.stringify({ url: url, email: email })
+  })
+  .then(function(response) {
+    if (response.ok) {
+      alert('✅ Audit triggered! Check your email.');
+      document.getElementById('vic-free-url').value = '';
+      document.getElementById('vic-free-email').value = '';
+    } else {
+      alert('❌ Something went wrong. Please try again.');
+    }
+  })
+  .catch(function() {
+    alert('❌ Network error. Please try again.');
+  })
+  .finally(function() {
+    btn.textContent = originalText;
+    btn.disabled = false;
+  });
+}
+</script>
+
 <body>
 
 <script>
