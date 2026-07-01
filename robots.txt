@@ -1,0 +1,21 @@
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /mailer
+Disallow: /api
+Disallow: /webhook
+Disallow: /v1
+Disallow: /.well-known/
+Disallow: /config
+
+# Allow major AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
