@@ -287,6 +287,7 @@
     max-width: 100%;
     scrollbar-width: thin;
     -webkit-overflow-scrolling: touch;
+    
     justify-content: center;
     flex-wrap: nowrap;
     }
@@ -299,6 +300,28 @@
      background: #22d3ee33;
      border-radius: 2px;
     }
+.badge-scroll {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 10px 0;
+  max-width: 100%;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  animation: scrollBadges 20s linear infinite;
+}
+
+@keyframes scrollBadges {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Pause on hover */
+.badge-scroll:hover {
+  animation-play-state: paused;
+}
   </style>
 </head>
 <body>
@@ -424,8 +447,20 @@
     <span>🔒 STRIPE SECURE</span>
   </div>
 
+
 <div class="badge-scroll">
-<a href="https://aiagentsdirectory.com/agent/vic-seo-specialist" target="_blank" rel="noopener">
+  <!-- First set -->
+  <a href="https://aiagentsdirectory.com/agent/vic-seo-specialist" target="_blank" rel="noopener">
+    <img src="https://aiagentsdirectory.com/featured-badge.svg?v=2024" alt="Featured on AI Agents Directory" style="width: 200px; height: auto;" />
+  </a>
+  <a href="https://www.producthunt.com/products/vic" target="_blank" rel="noopener">
+    <img alt="Vic - SEO audits in 5 seconds" style="width: 200px; height: auto;" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1185959&amp;theme=light&amp;t=1783012634184" />
+  </a>
+  <a href="https://twelve.tools" target="_blank" rel="noopener">
+    <img src="https://twelve.tools/badge3-dark.svg" alt="Featured on Twelve Tools" style="width: 200px; height: auto;" />
+  </a>
+  <!-- Duplicate set for seamless loop -->
+  <a href="https://aiagentsdirectory.com/agent/vic-seo-specialist" target="_blank" rel="noopener">
     <img src="https://aiagentsdirectory.com/featured-badge.svg?v=2024" alt="Featured on AI Agents Directory" style="width: 200px; height: auto;" />
   </a>
   <a href="https://www.producthunt.com/products/vic" target="_blank" rel="noopener">
