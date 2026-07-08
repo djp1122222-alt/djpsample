@@ -124,30 +124,10 @@
     document.getElementById('downloadBtn').style.display = 'none';
 
     fetch('https://vic.a.pinggy.link/v1/generate-page', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'X-API-Key': 'vic-free-key-2025'
-  },
-  body: JSON.stringify(data)
-})
-.then(response => response.json())
-.then(data => {
-  document.getElementById('loading').style.display = 'none';
-  if (data.html) {
-    const preview = document.getElementById('preview');
-    preview.style.display = 'block';
-    preview.srcdoc = data.html;
-    document.getElementById('paywall').style.display = 'block';
-    window.generatedHTML = data.html;
-  } else {
-    alert('❌ Failed to generate page. Please try again.');
-  }
-})
-.catch(error => {
-  document.getElementById('loading').style.display = 'none';
-  alert('❌ Error: ' + error.message);
-});
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': 'vic-free-key-2025'
       },
       body: JSON.stringify(data)
     })
@@ -165,12 +145,16 @@
       }
     })
     .catch(error => {
-      document.getElementById('paywall').style.display = 'block';
+      document.getElementById('loading').style.display = 'none';
       alert('❌ Error: ' + error.message);
     });
   }
+
   function downloadPage() {
-    if (!window.generatedHTML) return;
+    if (!window.generatedHTML) {
+      alert('Please generate a page first.');
+      return;
+    }
     const blob = new Blob([window.generatedHTML], { type: 'text/html' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -179,11 +163,6 @@
     a.click();
     URL.revokeObjectURL(url);
   }
-<div id="paywall" style="display: none; margin-top: 20px; padding: 20px; background: #0a0a1a; border: 1px solid #e879f9; border-radius: 8px;">
-    <p style="color: #e0f2fe;">Unlock your landing page for <strong>£19.99</strong></p>
-    <a href="https://fixseo.gumroad.com/l/pageforge" class="btn" style="width: auto; display: inline-block;">Pay Now — Download</a>
-    <p style="color: #64748b; font-size: 0.7rem; margin-top: 10px;">One-time payment. Lifetime access to your page.</p>
-</div>
 </script>
 
 </body>
