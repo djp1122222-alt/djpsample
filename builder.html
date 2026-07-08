@@ -169,7 +169,6 @@
       alert('❌ Error: ' + error.message);
     });
   }
-
   function downloadPage() {
     if (!window.generatedHTML) return;
     const blob = new Blob([window.generatedHTML], { type: 'text/html' });
