@@ -124,10 +124,30 @@
     document.getElementById('downloadBtn').style.display = 'none';
 
     fetch('https://vic.a.pinggy.link/v1/generate-page', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': 'vic-free-key-2025'
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'X-API-Key': 'vic-free-key-2025'
+  },
+  body: JSON.stringify(data)
+})
+.then(response => response.json())
+.then(data => {
+  document.getElementById('loading').style.display = 'none';
+  if (data.html) {
+    const preview = document.getElementById('preview');
+    preview.style.display = 'block';
+    preview.srcdoc = data.html;
+    document.getElementById('paywall').style.display = 'block';
+    window.generatedHTML = data.html;
+  } else {
+    alert('❌ Failed to generate page. Please try again.');
+  }
+})
+.catch(error => {
+  document.getElementById('loading').style.display = 'none';
+  alert('❌ Error: ' + error.message);
+});
       },
       body: JSON.stringify(data)
     })
