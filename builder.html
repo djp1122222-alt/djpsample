@@ -220,14 +220,40 @@
     <iframe id="preview"></iframe>
     <button class="btn download-btn" id="downloadBtn" onclick="downloadPage()">⬇ Download Landing Page</button>
 </div>
-
 <script>
-  // Check if user came from Gumroad purchase
   const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.has('purchased')) {
-      document.getElementById('purchaseBadge').classList.add('show');
+  const token = urlParams.get('token');
+  
+  // Check if user has valid token
+  if (!token) {
+    document.body.innerHTML = `
+      <div style="background:#050510;color:#e0f2fe;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center;">
+        <h1 style="font-size:2.5rem;background:linear-gradient(135deg,#22d3ee,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🔒 PageForge</h1>
+        <p style="font-size:1.2rem;color:#94a3b8;">Please purchase PageForge to access the builder.</p>
+        <a href="https://fixseo.gumroad.com/l/pageforge" style="display:inline-block;padding:16px 40px;background:#e879f9;color:#050510;font-weight:bold;border-radius:8px;text-decoration:none;font-size:1.2rem;margin-top:20px;">Buy Now — £19.99</a>
+        <p style="color:#64748b;font-size:0.9rem;margin-top:10px;">One-time payment. Lifetime access.</p>
+      </div>
+    `;
+  } else {
+    // Validate token with server
+    fetch('https://vic.a.pinggy.link/v1/validate-token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (!data.valid) {
+        document.body.innerHTML = `
+          <div style="background:#050510;color:#e0f2fe;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center;">
+            <h1 style="font-size:2.5rem;color:#e879f9;">❌ Invalid Token</h1>
+            <p style="font-size:1.2rem;color:#94a3b8;">This purchase token is not valid.</p>
+            <a href="https://fixseo.gumroad.com/l/pageforge" style="display:inline-block;padding:16px 40px;background:#e879f9;color:#050510;font-weight:bold;border-radius:8px;text-decoration:none;font-size:1.2rem;margin-top:20px;">Buy Now</a>
+          </div>
+        `;
+      }
+    });
   }
-
   // Auto-fill from Gumroad URL parameters
   if (urlParams.has('email')) {
       document.getElementById('email').value = urlParams.get('email');
@@ -237,7 +263,7 @@
   }
   if (urlParams.has('location')) {
       document.getElementById('location').value = urlParams.get('location');
-    }
+  }
   if (urlParams.has('phone')) {
       document.getElementById('phone').value = urlParams.get('phone');
   }
@@ -281,12 +307,12 @@
         localStorage.setItem('pageHTML', data.html);
         document.getElementById('downloadBtn').style.display = 'inline-block';
       } else {
-        alert('❌ Failed to generate page. Please try again.');
+        alert('Failed to generate page. Please try again.');
       }
     })
     .catch(error => {
       document.getElementById('loading').style.display = 'none';
-      alert('❌ Error: ' + error.message);
+      alert('Error: ' + error.message);
     });
   }
 
@@ -294,9 +320,10 @@
     var htmlContent = localStorage.getItem('pageHTML');
     
     if (!htmlContent) {
-      alert('⚠️ Please generate a page first by clicking "Build Page".');
+      alert('Please generate a page first by clicking "Build Page".');
       return;
     }
+    
     try {
       var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
       var url = URL.createObjectURL(blob);
@@ -310,7 +337,7 @@
         URL.revokeObjectURL(url);
       }, 100);
     } catch (e) {
-      alert('❌ Download failed: ' + e.message);
+      alert('Download failed: ' + e.message);
     }
   }
 </script>
