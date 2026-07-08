@@ -291,41 +291,26 @@
   }
 
   function downloadPage() {
-    var htmlContent = window.generatedHTML;
-    
-    if (!htmlContent || htmlContent === '') {
-      var preview = document.getElementById('preview');
-      htmlContent = preview.srcdoc;
-      
-      if (!htmlContent || htmlContent === '') {
-        try {
-          var iframeDoc = preview.contentDocument || preview.contentWindow.document;
-          if (iframeDoc && iframeDoc.documentElement) {
-            htmlContent = iframeDoc.documentElement.outerHTML;
-          }
-        } catch(e) {}
-      }
-    }
-    
-    if (!htmlContent || htmlContent === '' || htmlContent === 'about:blank') {
-      alert('⚠️ Please generate a page first by clicking "Build Page".');
-      return;
-    }
-    
-    try {
-      var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = 'landing-page.html';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function() {
-        URL.revokeObjectURL(url);
-      }, 100);
-    } catch (e) {
-      alert('❌ Download failed: ' + e.message);
+  var preview = document.getElementById('preview');
+  var htmlContent = preview.srcdoc;
+  
+  if (!htmlContent || htmlContent === '' || htmlContent === 'about:blank') {
+    alert('⚠️ Please generate a page first by clicking "Build Page".');
+    return;
+  }
+  
+  try {
+    var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'landing-page.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    alert('❌ Download failed: ' + e.message);
     }
   }
 </script>
