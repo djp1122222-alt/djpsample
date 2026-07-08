@@ -114,17 +114,17 @@
         .required {
             color: #e879f9;
         }
-        .gumroad-badge {
+        .purchase-badge {
             background: #0a0a1a;
-            border: 1px solid #22d3ee33;
+            border: 1px solid #22d3ee;
             border-radius: 8px;
             padding: 15px;
             margin-bottom: 20px;
             text-align: center;
             display: none;
+            color: #22d3ee;
         }
-        .gumroad-badge.success {
-            border-color: #22d3ee;
+        .purchase-badge.show {
             display: block;
         }
         @media (max-width: 600px) { 
@@ -143,8 +143,8 @@
     <h1>⚡ PageForge</h1>
     <p class="subtitle">Enter your business details — Vic builds a live landing page.</p>
 
-    <div class="gumroad-badge" id="gumroadBadge">
-        ✅ Purchase verified! You can download your page.
+    <div class="purchase-badge" id="purchaseBadge">
+        ✅ Purchase verified! Download your landing page below.
     </div>
 
     <div class="form-group">
@@ -222,9 +222,13 @@
 </div>
 
 <script>
-  // Auto-fill from Gumroad URL parameters
+  // Check if user came from Gumroad purchase
   const urlParams = new URLSearchParams(window.location.search);
-  
+  if (urlParams.has('purchased')) {
+      document.getElementById('purchaseBadge').classList.add('show');
+  }
+
+  // Auto-fill from Gumroad URL parameters
   if (urlParams.has('email')) {
       document.getElementById('email').value = urlParams.get('email');
   }
@@ -233,13 +237,9 @@
   }
   if (urlParams.has('location')) {
       document.getElementById('location').value = urlParams.get('location');
-  }
+    }
   if (urlParams.has('phone')) {
       document.getElementById('phone').value = urlParams.get('phone');
-  }
-  if (urlParams.has('purchased')) {
-      document.getElementById('gumroadBadge').classList.add('success');
-      document.getElementById('downloadBtn').style.display = 'inline-block';
   }
 
   function generatePage() {
@@ -278,7 +278,7 @@
         const preview = document.getElementById('preview');
         preview.style.display = 'block';
         preview.srcdoc = data.html;
-        window.generatedHTML = data.html;
+        localStorage.setItem('pageHTML', data.html);
         document.getElementById('downloadBtn').style.display = 'inline-block';
       } else {
         alert('❌ Failed to generate page. Please try again.');
@@ -291,26 +291,27 @@
   }
 
   function downloadPage() {
-  var preview = document.getElementById('preview');
-  var htmlContent = preview.srcdoc;
-  
-  if (!htmlContent || htmlContent === '' || htmlContent === 'about:blank') {
-    alert('⚠️ Please generate a page first by clicking "Build Page".');
-    return;
-  }
-  
-  try {
-    var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url;
-    a.download = 'landing-page.html';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  } catch (e) {
-    alert('❌ Download failed: ' + e.message);
+    var htmlContent = localStorage.getItem('pageHTML');
+    
+    if (!htmlContent) {
+      alert('⚠️ Please generate a page first by clicking "Build Page".');
+      return;
+    }
+    
+    try {
+      var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement('a');
+      a.href = url;
+      a.download = 'landing-page.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function() {
+        URL.revokeObjectURL(url);
+      }, 100);
+    } catch (e) {
+      alert('❌ Download failed: ' + e.message);
     }
   }
 </script>
