@@ -1,113 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PageForge — Build a Landing Page in Seconds</title>
-  <style>
-    body {
-      background: #050510;
-      color: #e0f2fe;
-      font-family: 'Courier New', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-      margin: 0;
-    }
-    .container {
-      max-width: 700px;
-      width: 100%;
-    }
-    h1 {
-      font-size: 2.5rem;
-      background: linear-gradient(135deg, #22d3ee, #e879f9);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-align: center;
-    }
-    textarea {
-      width: 100%;
-      padding: 15px;
-      background: #0a0a1a;
-      color: #e0f2fe;
-      border: 1px solid #22d3ee33;
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 1rem;
-      min-height: 100px;
-      resize: vertical;
-    }
-    .btn {
-      padding: 12px 30px;
-      background: #e879f9;
-      color: #050510;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 1rem;
-      margin-top: 10px;
-    }
-    .btn:hover {
-      background: #22d3ee;
-    }
-    #preview {
-      margin-top: 20px;
-      width: 100%;
-      border: 1px solid #22d3ee33;
-      border-radius: 8px;
-      background: #ffffff;
-      min-height: 300px;
-      display: none;
-    }
-    .loading {
-      color: #22d3ee;
-      text-align: center;
-      display: none;
-    }
-    .download-btn {
-      margin-top: 10px;
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PageForge — Build a Landing Page</title>
+    <style>
+        body { background: #050510; color: #e0f2fe; font-family: 'Courier New', monospace; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; padding: 20px; margin: 0; }
+        .container { max-width: 700px; width: 100%; }
+        h1 { font-size: 2.5rem; background: linear-gradient(135deg, #22d3ee, #e879f9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-align: center; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; color: #94a3b8; margin-bottom: 5px; font-size: 0.9rem; }
+        input, textarea { width: 100%; padding: 12px; background: #0a0a1a; color: #e0f2fe; border: 1px solid #22d3ee33; border-radius: 6px; font-family: inherit; font-size: 0.95rem; box-sizing: border-box; }
+        textarea { min-height: 80px; resize: vertical; }
+        .btn { padding: 12px 30px; background: #e879f9; color: #050510; font-weight: bold; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; margin-top: 10px; width: 100%; }
+        .btn:hover { background: #22d3ee; }
+        #preview { margin-top: 20px; width: 100%; border: 1px solid #22d3ee33; border-radius: 8px; background: #ffffff; min-height: 300px; display: none; }
+        .loading { color: #22d3ee; text-align: center; display: none; }
+        .download-btn { margin-top: 10px; display: none; }
+        .row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        @media (max-width: 600px) { .row { grid-template-columns: 1fr; } }
+    </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>⚡ PageForge</h1>
-  <p style="text-align: center; color: #94a3b8;">Describe your landing page — Vic builds it live.</p>
+    <h1>⚡ PageForge</h1>
+    <p style="text-align: center; color: #94a3b8;">Enter your business details — Vic builds a live landing page.</p>
 
-  <textarea id="prompt" placeholder="e.g., Landing page for a plumber in London. Include hero, services, testimonials, and a contact button."></textarea>
-  <button class="btn" onclick="generatePage()">Build Page</button>
+    <div class="form-group">
+        <label>Business Name *</label>
+        <input id="business_name" placeholder="e.g., Plumber Kirkcaldy" />
+    </div>
 
-  <div class="loading" id="loading">⏳ Vic is building your page...</div>
-  <iframe id="preview"></iframe>
-  <button class="btn download-btn" id="downloadBtn" onclick="downloadPage()">⬇ Download Page</button>
+    <div class="form-group">
+        <label>Location *</label>
+        <input id="location" placeholder="e.g., Kirkcaldy, Scotland" />
+    </div>
+
+    <div class="form-group">
+        <label>Phone Number *</label>
+        <input id="phone" placeholder="e.g., 07777777777" />
+    </div>
+
+    <div class="form-group">
+        <label>Services (one line)</label>
+        <input id="services" placeholder="e.g., Emergency plumbing, boiler repairs, installations" />
+    </div>
+
+    <div class="form-group">
+        <label>Business Description</label>
+        <textarea id="description" placeholder="e.g., We are a trusted plumbing company serving Kirkcaldy and surrounding areas."></textarea>
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <label>Email</label>
+            <input id="email" placeholder="info@yourbusiness.com" />
+        </div>
+        <div class="form-group">
+            <label>Website</label>
+            <input id="website" placeholder="yourbusiness.com" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Opening Hours</label>
+        <input id="opening_hours" placeholder="Mon-Fri: 9am-5pm, Sat: 10am-2pm" />
+    </div>
+
+    <div class="row">
+        <div class="form-group">
+            <label>Facebook URL</label>
+            <input id="social_facebook" placeholder="https://facebook.com/yourpage" />
+        </div>
+        <div class="form-group">
+            <label>Twitter URL</label>
+            <input id="social_twitter" placeholder="https://twitter.com/yourpage" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Instagram URL</label>
+        <input id="social_instagram" placeholder="https://instagram.com/yourpage" />
+    </div>
+
+    <div class="form-group">
+        <label>Customer Testimonial</label>
+        <textarea id="testimonial" placeholder='"They fixed my boiler in no time!"'></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>CTA Button Text</label>
+        <input id="cta_text" placeholder="Get in Touch" value="Get in Touch" />
+    </div>
+
+    <button class="btn" onclick="generatePage()">🚀 Build Page</button>
+
+    <div class="loading" id="loading">⏳ Vic is building your page...</div>
+    <iframe id="preview"></iframe>
+    <button class="btn download-btn" id="downloadBtn" onclick="downloadPage()">⬇ Download Landing Page</button>
 </div>
 
 <script>
   function generatePage() {
-    const prompt = document.getElementById('prompt').value;
-    if (!prompt) {
-      alert('Please describe your landing page.');
-      return;
-    }
+    const data = {
+      business_name: document.getElementById('business_name').value || 'Your Business',
+      location: document.getElementById('location').value || 'UK',
+      phone: document.getElementById('phone').value || '01234 567890',
+      services: document.getElementById('services').value || 'Professional services',
+      description: document.getElementById('description').value || 'We provide high-quality services.',
+      email: document.getElementById('email').value || 'info@yourbusiness.com',
+      website: document.getElementById('website').value || 'yourbusiness.com',
+      opening_hours: document.getElementById('opening_hours').value || 'Mon-Fri: 9am-5pm',
+      social_facebook: document.getElementById('social_facebook').value,
+      social_twitter: document.getElementById('social_twitter').value,
+      social_instagram: document.getElementById('social_instagram').value,
+      testimonial: document.getElementById('testimonial').value,
+      cta_text: document.getElementById('cta_text').value || 'Get in Touch'
+    };
 
     document.getElementById('loading').style.display = 'block';
     document.getElementById('preview').style.display = 'none';
     document.getElementById('downloadBtn').style.display = 'none';
 
-    // Call Vic's API to generate the page
     fetch('https://vic.a.pinggy.link/v1/generate-page', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'X-API-Key': 'vic-free-key-2025'
       },
-      body: JSON.stringify({ prompt: prompt })
+      body: JSON.stringify(data)
     })
     .then(response => response.json())
     .then(data => {
@@ -142,3 +164,4 @@
 
 </body>
 </html>
+
