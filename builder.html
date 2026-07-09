@@ -207,8 +207,8 @@
 <script>
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get('token');
-  
-  if (!token) {
+
+  function showBuyPage() {
     document.body.innerHTML = `
       <div style="background:#050510;color:#e0f2fe;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center;">
         <h1 style="font-size:2.5rem;background:linear-gradient(135deg,#22d3ee,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🔒 PageForge</h1>
@@ -217,6 +217,20 @@
         <p style="color:#64748b;font-size:0.9rem;margin-top:10px;">One-time payment. Lifetime access.</p>
       </div>
     `;
+  }
+
+  function showInvalidToken() {
+    document.body.innerHTML = `
+      <div style="background:#050510;color:#e0f2fe;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center;">
+        <h1 style="font-size:2.5rem;color:#e879f9;">❌ Invalid Token</h1>
+        <p style="font-size:1.2rem;color:#94a3b8;">This purchase token is not valid.</p>
+        <a href="https://fixseo.gumroad.com/l/pageforge" style="display:inline-block;padding:16px 40px;background:#e879f9;color:#050510;font-weight:bold;border-radius:8px;text-decoration:none;font-size:1.2rem;margin-top:20px;">Buy Now</a>
+      </div>
+    `;
+  }
+
+  if (!token) {
+    showBuyPage();
   } else {
     fetch('https://vic.a.pinggy.link/v1/validate-token', {
       method: 'POST',
@@ -226,100 +240,100 @@
     .then(response => response.json())
     .then(data => {
       if (!data.valid) {
-        document.body.innerHTML = `
-          <div style="background:#050510;color:#e0f2fe;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center;">
-            <h1 style="font-size:2.5rem;color:#e879f9;">❌ Invalid Token</h1>
-            <p style="font-size:1.2rem;color:#94a3b8;">This purchase token is not valid.</p>
-            <a href="https://fixseo.gumroad.com/l/pageforge" style="display:inline-block;padding:16px 40px;background:#e879f9;color:#050510;font-weight:bold;border-radius:8px;text-decoration:none;font-size:1.2rem;margin-top:20px;">Buy Now</a>
-          </div>
-        `;
+        showInvalidToken();
       }
+    })
+    .catch(() => {
+      showInvalidToken();
     });
   }
 
-  if (urlParams.has('email')) {
-      document.getElementById('email').value = urlParams.get('email');
-  }
-  if (urlParams.has('business_name')) {
-      document.getElementById('business_name').value = urlParams.get('business_name');
-  }
-  if (urlParams.has('location')) {
-      document.getElementById('location').value = urlParams.get('location');
-  }
-  if (urlParams.has('phone')) {
-      document.getElementById('phone').value = urlParams.get('phone');
-  }
-
-  function generatePage() {
-    const data = {
-      business_name: document.getElementById('business_name').value || 'Your Business',
-      location: document.getElementById('location').value || 'UK',
-      phone: document.getElementById('phone').value || '01234 567890',
-      services: document.getElementById('services').value || 'Professional services',
-      description: document.getElementById('description').value || 'We provide high-quality services.',
-      email: document.getElementById('email').value || 'info@yourbusiness.com',
-      website: document.getElementById('website').value || 'yourbusiness.com',
-      opening_hours: document.getElementById('opening_hours').value || 'Mon-Fri: 9am-5pm',
-      social_facebook: document.getElementById('social_facebook').value,
-      social_twitter: document.getElementById('social_twitter').value,
-      social_instagram: document.getElementById('social_instagram').value,
-      testimonial: document.getElementById('testimonial').value,
-      cta_text: document.getElementById('cta_text').value || 'Get in Touch'
-    };
-
-    document.getElementById('loading').style.display = 'block';
-    document.getElementById('preview').style.display = 'none';
-    document.getElementById('downloadBtn').style.display = 'none';
-
-    fetch('https://vic.a.pinggy.link/v1/generate-page', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': 'vic-free-key-2025'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('loading').style.display = 'none';
-      if (data.html) {
-        const preview = document.getElementById('preview');
-        preview.style.display = 'block';
-        preview.srcdoc = data.html;
-        localStorage.setItem('pageHTML', data.html);
-        document.getElementById('downloadBtn').style.display = 'inline-block';
-      } else {
-        alert('Failed to generate page. Please try again.');
-      }
-    })
-    .catch(error => {
-      document.getElementById('loading').style.display = 'none';
-      alert('Error: ' + error.message);
-    });
-  }
-
-  function downloadPage() {
-    var htmlContent = localStorage.getItem('pageHTML');
-    
-    if (!htmlContent) {
-      alert('Please generate a page first by clicking "Build Page".');
-      return;
+  // Only run this code if token exists (page hasn't been replaced)
+  if (token) {
+    if (urlParams.has('email')) {
+        document.getElementById('email').value = urlParams.get('email');
     }
-    
-    try {
-      var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-      var url = URL.createObjectURL(blob);
-      var a = document.createElement('a');
-      a.href = url;
-      a.download = 'landing-page.html';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      setTimeout(function() {
-        URL.revokeObjectURL(url);
-      }, 100);
-    } catch (e) {
-      alert('Download failed: ' + e.message);
+    if (urlParams.has('business_name')) {
+        document.getElementById('business_name').value = urlParams.get('business_name');
+    }
+    if (urlParams.has('location')) {
+        document.getElementById('location').value = urlParams.get('location');
+    }
+    if (urlParams.has('phone')) {
+        document.getElementById('phone').value = urlParams.get('phone');
+    }
+
+    function generatePage() {
+      const data = {
+        business_name: document.getElementById('business_name').value || 'Your Business',
+        location: document.getElementById('location').value || 'UK',
+        phone: document.getElementById('phone').value || '01234 567890',
+        services: document.getElementById('services').value || 'Professional services',
+        description: document.getElementById('description').value || 'We provide high-quality services.',
+        email: document.getElementById('email').value || 'info@yourbusiness.com',
+        website: document.getElementById('website').value || 'yourbusiness.com',
+        opening_hours: document.getElementById('opening_hours').value || 'Mon-Fri: 9am-5pm',
+        social_facebook: document.getElementById('social_facebook').value,
+        social_twitter: document.getElementById('social_twitter').value,
+        social_instagram: document.getElementById('social_instagram').value,
+        testimonial: document.getElementById('testimonial').value,
+        cta_text: document.getElementById('cta_text').value || 'Get in Touch'
+      };
+
+      document.getElementById('loading').style.display = 'block';
+      document.getElementById('preview').style.display = 'none';
+      document.getElementById('downloadBtn').style.display = 'none';
+
+      fetch('https://vic.a.pinggy.link/v1/generate-page', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': 'vic-free-key-2025'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('loading').style.display = 'none';
+        if (data.html) {
+          const preview = document.getElementById('preview');
+          preview.style.display = 'block';
+          preview.srcdoc = data.html;
+          localStorage.setItem('pageHTML', data.html);
+          document.getElementById('downloadBtn').style.display = 'inline-block';
+        } else {
+          alert('Failed to generate page. Please try again.');
+        }
+      })
+      .catch(error => {
+        document.getElementById('loading').style.display = 'none';
+        alert('Error: ' + error.message);
+      });
+    }
+
+    function downloadPage() {
+      var htmlContent = localStorage.getItem('pageHTML');
+      
+      if (!htmlContent) {
+        alert('Please generate a page first by clicking "Build Page".');
+        return;
+      }
+      
+      try {
+        var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a');
+        a.href = url;
+        a.download = 'landing-page.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(function() {
+          URL.revokeObjectURL(url);
+        }, 100);
+      } catch (e) {
+        alert('Download failed: ' + e.message);
+      }
     }
   }
 </script>
