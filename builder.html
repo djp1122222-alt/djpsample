@@ -234,8 +234,10 @@
         <p style="color:#64748b;font-size:0.9rem;margin-top:10px;">One-time payment. Lifetime access.</p>
       </div>
     `;
+      
   } else {
-    // Validate token with server
+  // Wait 2 seconds for webhook to save token
+  setTimeout(() => {
     fetch('https://vic.a.pinggy.link/v1/validate-token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -253,7 +255,8 @@
         `;
       }
     });
-  }
+  }, 2000);
+}
   // Auto-fill from Gumroad URL parameters
   if (urlParams.has('email')) {
       document.getElementById('email').value = urlParams.get('email');
