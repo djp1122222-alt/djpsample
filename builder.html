@@ -235,9 +235,9 @@
       </div>
     `;
       
-  } else {
-  // Wait 2 seconds for webhook to save token
-  setTimeout(() => {
+ } else {
+  // Keep checking until token is valid
+  function checkToken(retryCount) {
     fetch('https://vic.a.pinggy.link/v1/validate-token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -245,7 +245,14 @@
     })
     .then(response => response.json())
     .then(data => {
-      if (!data.valid) {
+      if (data.valid) {
+        // Token is valid - show the builder
+        document.getElementById('purchaseBadge').classList.add('show');
+      } else if (retryCount < 10) {
+        // Try again after 1 second
+        setTimeout(() => checkToken(retryCount + 1), 1000);
+      } else {
+        // After 10 retries, show invalid
         document.body.innerHTML = `
           <div style="background:#050510;color:#e0f2fe;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center;">
             <h1 style="font-size:2.5rem;color:#e879f9;">❌ Invalid Token</h1>
@@ -254,9 +261,18 @@
           </div>
         `;
       }
+    })
+    .catch(() => {
+      if (retryCount < 10) {
+        setTimeout(() => checkToken(retryCount + 1), 1000);
+      }
     });
-  }, 2000);
+  }
+  
+  // Start checking
+  checkToken(0);
 }
+
   // Auto-fill from Gumroad URL parameters
   if (urlParams.has('email')) {
       document.getElementById('email').value = urlParams.get('email');
