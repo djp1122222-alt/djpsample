@@ -216,6 +216,18 @@
 
     <button class="btn" onclick="generatePage()">🚀 Build Page</button>
 
+<div class="form-group">
+    <label>Choose Style</label>
+    <select id="style_select" style="width:100%;padding:14px;background:#0a0a1a;color:#e0f2fe;border:1px solid #22d3ee33;border-radius:8px;font-family:inherit;font-size:1.05rem;">
+        <option value="default">Default (Purple/Blue)</option>
+        <option value="blue">Blue Ocean</option>
+        <option value="dark">Dark Knight</option>
+        <option value="modern">Modern Pink</option>
+        <option value="green">Forest Green</option>
+        <option value="gold">Gold Premium</option>
+    </select>
+</div>
+
     <div class="loading" id="loading">⏳ Vic is building your page...</div>
     <iframe id="preview"></iframe>
     <button class="btn download-btn" id="downloadBtn" onclick="downloadPage()">⬇ Download Landing Page</button>
@@ -283,6 +295,7 @@
       social_instagram: document.getElementById('social_instagram').value,
       testimonial: document.getElementById('testimonial').value,
       cta_text: document.getElementById('cta_text').value || 'Get in Touch'
+      style: document.getElementByld('style_select').value || 'default'
     };
 
     document.getElementById('loading').style.display = 'block';
