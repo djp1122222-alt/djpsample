@@ -241,6 +241,9 @@
     .then(data => {
       if (!data.valid) {
         showInvalidToken();
+      } else {
+        // Token is valid - now set up the page
+        setupBuilder();
       }
     })
     .catch(() => {
@@ -248,8 +251,8 @@
     });
   }
 
-  // Only run this code if token exists (page hasn't been replaced)
-  if (token) {
+  function setupBuilder() {
+    // Auto-fill from Gumroad URL parameters
     if (urlParams.has('email')) {
         document.getElementById('email').value = urlParams.get('email');
     }
@@ -263,7 +266,7 @@
         document.getElementById('phone').value = urlParams.get('phone');
     }
 
-    function generatePage() {
+    window.generatePage = function() {
       const data = {
         business_name: document.getElementById('business_name').value || 'Your Business',
         location: document.getElementById('location').value || 'UK',
@@ -309,9 +312,9 @@
         document.getElementById('loading').style.display = 'none';
         alert('Error: ' + error.message);
       });
-    }
+    };
 
-    function downloadPage() {
+    window.downloadPage = function() {
       var htmlContent = localStorage.getItem('pageHTML');
       
       if (!htmlContent) {
@@ -334,7 +337,7 @@
       } catch (e) {
         alert('Download failed: ' + e.message);
       }
-    }
+    };
   }
 </script>
 
