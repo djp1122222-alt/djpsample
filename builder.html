@@ -149,21 +149,26 @@
 
     <div class="form-group">
         <label>Business Name <span class="required">*</span></label>
-        <input id="business_name" placeholder="e.g., Plumber Edinburgh" />
+        <input id="business_name" placeholder="e.g., Plumber Kirkcaldy" />
     </div>
 
     <div class="form-group">
         <label>Location <span class="required">*</span></label>
-        <input id="location" placeholder="e.g., Your city, Country" />
+        <input id="location" placeholder="e.g., Kirkcaldy, Scotland" />
     </div>
 
     <div class="form-group">
         <label>Phone Number <span class="required">*</span></label>
-        <input id="phone" placeholder="e.g., 07123456789" />
+        <input id="phone" placeholder="e.g., 07777777777" />
     </div>
 
     <div class="form-group">
-        <label>Services/Description</label>
+        <label>Services (one line)</label>
+        <input id="services" placeholder="e.g., Emergency plumbing, boiler repairs, installations" />
+    </div>
+
+    <div class="form-group">
+        <label>Business Description</label>
         <textarea id="description" placeholder="e.g., We are a trusted plumbing company serving Kirkcaldy and surrounding areas."></textarea>
     </div>
 
@@ -208,7 +213,7 @@
         <label>CTA Button Text</label>
         <input id="cta_text" placeholder="Get in Touch" value="Get in Touch" />
     </div>
-    
+
     <button class="btn" onclick="generatePage()">🚀 Build Page</button>
 
     <div class="loading" id="loading">⏳ Vic is building your page...</div>
@@ -229,10 +234,8 @@
         <p style="color:#64748b;font-size:0.9rem;margin-top:10px;">One-time payment. Lifetime access.</p>
       </div>
     `;
-      
- } else {
-  // Keep checking until token is valid
-  function checkToken(retryCount) {
+  } else {
+    // Validate token with server
     fetch('https://vic.a.pinggy.link/v1/validate-token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -240,14 +243,7 @@
     })
     .then(response => response.json())
     .then(data => {
-      if (data.valid) {
-        // Token is valid - show the builder
-        document.getElementById('purchaseBadge').classList.add('show');
-      } else if (retryCount < 10) {
-        // Try again after 1 second
-        setTimeout(() => checkToken(retryCount + 1), 1000);
-      } else {
-        // After 10 retries, show invalid
+      if (!data.valid) {
         document.body.innerHTML = `
           <div style="background:#050510;color:#e0f2fe;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center;">
             <h1 style="font-size:2.5rem;color:#e879f9;">❌ Invalid Token</h1>
@@ -256,18 +252,8 @@
           </div>
         `;
       }
-    })
-    .catch(() => {
-      if (retryCount < 10) {
-        setTimeout(() => checkToken(retryCount + 1), 1000);
-      }
     });
   }
-  
-  // Start checking
-  checkToken(0);
-}
-
   // Auto-fill from Gumroad URL parameters
   if (urlParams.has('email')) {
       document.getElementById('email').value = urlParams.get('email');
@@ -283,21 +269,21 @@
   }
 
   function generatePage() {
-  const data = {
-    business_name: document.getElementById('business_name').value || 'Your Business',
-    location: document.getElementById('location').value || 'UK',
-    phone: document.getElementById('phone').value || '01234 567890',
-    services: document.getElementById('services').value || 'Professional services',
-    description: document.getElementById('description').value || 'We provide high-quality services.',
-    email: document.getElementById('email').value || 'info@yourbusiness.com',
-    website: document.getElementById('website').value || 'yourbusiness.com',
-    opening_hours: document.getElementById('opening_hours').value || 'Mon-Fri: 9am-5pm',
-    social_facebook: document.getElementById('social_facebook').value || '',
-    social_twitter: document.getElementById('social_twitter').value || '',
-    social_instagram: document.getElementById('social_instagram').value || '',
-    testimonial: document.getElementById('testimonial').value || '',
-    cta_text: document.getElementById('cta_text').value || 'Get in Touch'
-  };
+    const data = {
+      business_name: document.getElementById('business_name').value || 'Your Business',
+      location: document.getElementById('location').value || 'UK',
+      phone: document.getElementById('phone').value || '01234 567890',
+      services: document.getElementById('services').value || 'Professional services',
+      description: document.getElementById('description').value || 'We provide high-quality services.',
+      email: document.getElementById('email').value || 'info@yourbusiness.com',
+      website: document.getElementById('website').value || 'yourbusiness.com',
+      opening_hours: document.getElementById('opening_hours').value || 'Mon-Fri: 9am-5pm',
+      social_facebook: document.getElementById('social_facebook').value,
+      social_twitter: document.getElementById('social_twitter').value,
+      social_instagram: document.getElementById('social_instagram').value,
+      testimonial: document.getElementById('testimonial').value,
+      cta_text: document.getElementById('cta_text').value || 'Get in Touch'
+    };
 
     document.getElementById('loading').style.display = 'block';
     document.getElementById('preview').style.display = 'none';
@@ -353,6 +339,19 @@
     } catch (e) {
       alert('Download failed: ' + e.message);
     }
+  }
+</script>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  if (!urlParams.has('purchased')) {
+    document.body.innerHTML = `
+      <div style="background:#050510;color:#e0f2fe;font-family:'Courier New',monospace;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:20px;text-align:center;">
+        <h1 style="font-size:2.5rem;background:linear-gradient(135deg,#22d3ee,#e879f9);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">🔒 PageForge</h1>
+        <p style="font-size:1.2rem;color:#94a3b8;">Please purchase PageForge to access the builder.</p>
+        <a href="https://fixseo.gumroad.com/l/pageforge" style="display:inline-block;padding:16px 40px;background:#e879f9;color:#050510;font-weight:bold;border-radius:8px;text-decoration:none;font-size:1.2rem;margin-top:20px;">Buy Now — £19.99</a>
+        <p style="color:#64748b;font-size:0.9rem;margin-top:10px;">One-time payment. Lifetime access.</p>
+      </div>
+    `;
   }
 </script>
 
