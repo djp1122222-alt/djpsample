@@ -208,11 +208,6 @@
         <label>CTA Button Text</label>
         <input id="cta_text" placeholder="Get in Touch" value="Get in Touch" />
     </div>
-
-<div class="form-group">
-    <label>Badge Text</label>
-    <input id="badge_text" placeholder="e.g., READY TO LAUNCH" value="READY TO LAUNCH" />
-</div>
     
     <button class="btn" onclick="generatePage()">🚀 Build Page</button>
 
@@ -291,8 +286,7 @@
     const data = {
       business_name: document.getElementById('business_name').value || 'Your Business',
       location: document.getElementById('location').value || 'UK',
-      phone: document.getElementById('phone').value ||              
-      badge_text: document.getElementById('badge_text').value || 'READY TO LAUNCH',
+      phone: document.getElementById('phone').value ||             
       services: document.getElementById('services').value || 'Professional services',
       description: document.getElementById('description').value || 'We provide high-quality services.',
       email: document.getElementById('email').value || 'info@yourbusiness.com',
