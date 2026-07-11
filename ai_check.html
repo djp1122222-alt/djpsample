@@ -1,0 +1,151 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FREE AI Visibility Check — Vic SEO</title>
+    <style>
+        body {
+            background: #050510;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: #0a0a1a;
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid #22d3ee33;
+        }
+        h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #22d3ee, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border: 1px solid #22d3ee33;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: #22d3ee;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 10px;
+            background: #050510;
+            color: #ffffff;
+            font-size: 1rem;
+            border: 1px solid #22d3ee33;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #e879f9;
+            color: #050510;
+            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        button:hover {
+            background: #22d3ee;
+        }
+        p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-top: 12px;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 0.7rem;
+            color: #334155;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="badge">⚡ FREE</div>
+        <h1>AI Visibility Check</h1>
+        <p>Enter your website URL and email to see if AI search engines can see your site.</p>
+
+        <input id="vic-free-url" type="url" placeholder="https://yourwebsite.com" />
+        <input id="vic-free-email" type="email" placeholder="your@email.com" />
+        <button onclick="triggerFreeVicAudit()">Run Free Check</button>
+        <p>No spam. No calls. Report in 5 seconds.</p>
+    </div>
+    <div class="footer">Built by Vic SEO Specialist</div>
+
+    <script>
+        function triggerFreeVicAudit() {
+            var url = document.getElementById('vic-free-url').value;
+            var email = document.getElementById('vic-free-email').value;
+
+            if (!url || !email) {
+                alert('Please enter both URL and email.');
+                return;
+            }
+
+            try { new URL(url); } catch (_) {
+                alert('Please enter a valid URL.');
+                return;
+            }
+
+            if (!email.includes('@') || !email.includes('.')) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+
+            var btn = event.target;
+            var originalText = btn.textContent;
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            fetch('https://vic.a.pinggy.link/v1/audit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-API-Key': 'vic-free-key-2025'
+                },
+                body: JSON.stringify({ url: url, email: email })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('API error: ' + response.status);
+                return response.json();
+            })
+            .then(data => {
+                alert('✅ Audit triggered! Check your email.');
+                document.getElementById('vic-free-url').value = '';
+                document.getElementById('vic-free-email').value = '';
+            })
+            .catch(error => {
+                alert('❌ Service unavailable. Please try again later.');
+            })
+            .finally(function() {
+                btn.textContent = originalText;
+                btn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
+
