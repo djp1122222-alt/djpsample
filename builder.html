@@ -283,21 +283,21 @@
   }
 
   function generatePage() {
-    const data = {
-      business_name: document.getElementById('business_name').value || 'Your Business',
-      location: document.getElementById('location').value || 'UK',
-      phone: document.getElementById('phone').value ||             
-      services: document.getElementById('services').value || 'Professional services',
-      description: document.getElementById('description').value || 'We provide high-quality services.',
-      email: document.getElementById('email').value || 'info@yourbusiness.com',
-      website: document.getElementById('website').value || 'yourbusiness.com',
-      opening_hours: document.getElementById('opening_hours').value || 'Mon-Fri: 9am-5pm',
-      social_facebook: document.getElementById('social_facebook').value,
-      social_twitter: document.getElementById('social_twitter').value,
-      social_instagram: document.getElementById('social_instagram').value,
-      testimonial: document.getElementById('testimonial').value,
-      cta_text: document.getElementById('cta_text').value || 'Get in Touch'
-    };
+  const data = {
+    business_name: document.getElementById('business_name').value || 'Your Business',
+    location: document.getElementById('location').value || 'UK',
+    phone: document.getElementById('phone').value || '01234 567890',
+    services: document.getElementById('services').value || 'Professional services',
+    description: document.getElementById('description').value || 'We provide high-quality services.',
+    email: document.getElementById('email').value || 'info@yourbusiness.com',
+    website: document.getElementById('website').value || 'yourbusiness.com',
+    opening_hours: document.getElementById('opening_hours').value || 'Mon-Fri: 9am-5pm',
+    social_facebook: document.getElementById('social_facebook').value || '',
+    social_twitter: document.getElementById('social_twitter').value || '',
+    social_instagram: document.getElementById('social_instagram').value || '',
+    testimonial: document.getElementById('testimonial').value || '',
+    cta_text: document.getElementById('cta_text').value || 'Get in Touch'
+  };
 
     document.getElementById('loading').style.display = 'block';
     document.getElementById('preview').style.display = 'none';
