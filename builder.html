@@ -264,8 +264,6 @@
   }
 
   function generatePage() {
-  alert('1. Button clicked!');
-  
   const data = {
     business_name: document.getElementById('business_name').value || 'Your Business',
     location: document.getElementById('location').value || 'UK',
@@ -280,8 +278,6 @@
     testimonial: document.getElementById('testimonial').value,
     cta_text: document.getElementById('cta_text').value || 'Get in Touch'
   };
-
-  alert('2. Data collected: ' + JSON.stringify(data));
 
   document.getElementById('loading').style.display = 'block';
   document.getElementById('preview').style.display = 'none';
