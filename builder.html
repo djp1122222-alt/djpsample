@@ -264,7 +264,8 @@
   }
 
   function generatePage() {
-    const data = {
+  alert('generatePage() called!');  // ADD THIS LINE
+  const data = {
       business_name: document.getElementById('business_name').value || 'Your Business',
       location: document.getElementById('location').value || 'UK',
       phone: document.getElementById('phone').value || '01234 567890',
