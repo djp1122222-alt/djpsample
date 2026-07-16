@@ -264,53 +264,60 @@
   }
 
   function generatePage() {
-  alert('generatePage() called!');  // ADD THIS LINE
+  alert('1. Button clicked!');
+  
   const data = {
-      business_name: document.getElementById('business_name').value || 'Your Business',
-      location: document.getElementById('location').value || 'UK',
-      phone: document.getElementById('phone').value || '01234 567890',
-      services: document.getElementById('services').value || 'Professional services',
-      description: document.getElementById('description').value || 'We provide high-quality services.',
-      email: document.getElementById('email').value || 'info@yourbusiness.com',
-      website: document.getElementById('website').value || 'yourbusiness.com',
-      opening_hours: document.getElementById('opening_hours').value || 'Mon-Fri: 9am-5pm',
-      social_facebook: document.getElementById('social_facebook').value,
-      social_twitter: document.getElementById('social_twitter').value,
-      social_instagram: document.getElementById('social_instagram').value,
-      testimonial: document.getElementById('testimonial').value,
-      cta_text: document.getElementById('cta_text').value || 'Get in Touch'
-    };
+    business_name: document.getElementById('business_name').value || 'Your Business',
+    location: document.getElementById('location').value || 'UK',
+    phone: document.getElementById('phone').value || '01234 567890',
+    services: document.getElementById('services').value || 'Professional services',
+    description: document.getElementById('description').value || 'We provide high-quality services.',
+    email: document.getElementById('email').value || 'info@yourbusiness.com',
+    website: document.getElementById('website').value || 'yourbusiness.com',
+    opening_hours: document.getElementById('opening_hours').value || 'Mon-Fri: 9am-5pm',
+    social_facebook: document.getElementById('social_facebook').value,
+    social_twitter: document.getElementById('social_twitter').value,
+    social_instagram: document.getElementById('social_instagram').value,
+    testimonial: document.getElementById('testimonial').value,
+    cta_text: document.getElementById('cta_text').value || 'Get in Touch'
+  };
 
-    document.getElementById('loading').style.display = 'block';
-    document.getElementById('preview').style.display = 'none';
-    document.getElementById('downloadBtn').style.display = 'none';
+  alert('2. Data collected: ' + JSON.stringify(data));
 
-    fetch('https://vic.a.pinggy.link/v1/generate-page', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': 'vic-free-key-2025'
-      },
-      body: JSON.stringify(data)
-    })
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('loading').style.display = 'none';
-      if (data.html) {
-        const preview = document.getElementById('preview');
-        preview.style.display = 'block';
-        preview.srcdoc = data.html;
-        localStorage.setItem('pageHTML', data.html);
-        document.getElementById('downloadBtn').style.display = 'inline-block';
-      } else {
-        alert('Failed to generate page. Please try again.');
-      }
-    })
-    .catch(error => {
-      document.getElementById('loading').style.display = 'none';
-      alert('Error: ' + error.message);
-    });
-  }
+  document.getElementById('loading').style.display = 'block';
+  document.getElementById('preview').style.display = 'none';
+  document.getElementById('downloadBtn').style.display = 'none';
+
+  fetch('https://vic.a.pinggy.link/v1/generate-page', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-API-Key': 'vic-free-key-2025'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => {
+    alert('3. Response received! Status: ' + response.status);
+    return response.json();
+  })
+  .then(data => {
+    alert('4. Data parsed! HTML length: ' + data.html.length);
+    document.getElementById('loading').style.display = 'none';
+    if (data.html) {
+      const preview = document.getElementById('preview');
+      preview.style.display = 'block';
+      preview.srcdoc = data.html;
+      localStorage.setItem('pageHTML', data.html);
+      document.getElementById('downloadBtn').style.display = 'inline-block';
+    } else {
+      alert('Failed to generate page. Please try again.');
+    }
+  })
+  .catch(error => {
+    alert('5. Error: ' + error.message);
+    document.getElementById('loading').style.display = 'none';
+  });
+}
 
   function downloadPage() {
     var htmlContent = localStorage.getItem('pageHTML');
