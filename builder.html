@@ -292,11 +292,9 @@
     body: JSON.stringify(data)
   })
   .then(response => {
-    alert('3. Response received! Status: ' + response.status);
     return response.json();
   })
   .then(data => {
-    alert('4. Data parsed! HTML length: ' + data.html.length);
     document.getElementById('loading').style.display = 'none';
     if (data.html) {
       const preview = document.getElementById('preview');
@@ -307,9 +305,7 @@
     } else {
       alert('Failed to generate page. Please try again.');
     }
-  })
-  .catch(error => {
-    alert('5. Error: ' + error.message);
+  }
     document.getElementById('loading').style.display = 'none';
   });
 }
