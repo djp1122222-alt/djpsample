@@ -313,11 +313,6 @@
   function downloadPage() {
     var htmlContent = localStorage.getItem('pageHTML');
     
-    if (!htmlContent) {
-      alert('Please generate a page first by clicking "Build Page".');
-      return;
-    }
-    
     try {
       var blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
       var url = URL.createObjectURL(blob);
