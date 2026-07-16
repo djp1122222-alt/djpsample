@@ -291,9 +291,7 @@
     },
     body: JSON.stringify(data)
   })
-  .then(response => {
-    return response.json();
-  })
+  .then(response => response.json())
   .then(data => {
     document.getElementById('loading').style.display = 'none';
     if (data.html) {
@@ -305,8 +303,10 @@
     } else {
       alert('Failed to generate page. Please try again.');
     }
-  }
+  })
+  .catch(error => {
     document.getElementById('loading').style.display = 'none';
+    alert('Error: ' + error.message);
   });
 }
 
