@@ -11,4 +11,10 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://fixseo.uk/sitemap.txt
