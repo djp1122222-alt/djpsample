@@ -1,27 +1,113 @@
-# FixSEO — Automated SEO Audits
+# Fixseo — SEO Audit & Digital Growth Agency
 
-Automated SEO audits delivered to your inbox in 5 seconds.
+![Fixseo Logo](https://fixseo.uk/IMG_9720.jpeg)
 
-## What it does
+**Automated SEO audits in 5 seconds. Get a score, issues list, and fix guide delivered to your inbox.**
 
-- Runs full SEO audits on any website
-- Checks AI visibility (ChatGPT, Gemini, Perplexity)
-- Delivers a score, issues list, and fix guide
-- No calls, no meetings, no technical skills required
+[![Website](https://img.shields.io/badge/Website-fixseo.uk-blue)](https://fixseo.uk)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Quick Start
+---
 
-1. Visit https://fixseo.uk
-2. Enter your website URL and email
-3. Get your audit report in 5 seconds
+## 🚀 Live Site
 
-## Files
+**[Visit Fixseo →](https://fixseo.uk)**
 
-- `index.html` — Landing page
-- `terms.html` — Terms of Service
-- `robots.txt` — Crawler instructions
-- `.well-known/agi.json` — Agent discovery
+---
 
-## License
+## ✨ Features
 
-© Vic SEO Specialist
+### 🔍 Automated SEO Audits
+- Get a full SEO score in 5 seconds
+- Identify technical issues holding your site back
+- Receive a step-by-step fix guide
+- No calls. No meetings. No subscriptions.
+
+### 🤖 AI Visibility Check
+- See if AI search engines (ChatGPT, Perplexity) can find your site
+- Check for AI crawler blocking
+- Free visibility report
+
+### 🧠 What's Included
+
+| Feature | Description |
+|---------|-------------|
+| **SEO Score** | 0-100 rating of your site's health |
+| **Title Tag Check** | Missing or too long/short |
+| **Meta Description** | Missing or poorly written |
+| **H1 Heading** | Missing or multiple H1s |
+| **Mobile Friendliness** | Viewport and responsive checks |
+| **AI Crawlability** | Check if AI bots are blocked |
+| **Fix Guide** | Step-by-step instructions |
+| **Full Audit Report** | Complete breakdown of issues |
+
+---
+
+## 💰 Pricing
+
+| Product | Price | What You Get |
+|---------|-------|--------------|
+| **AI Visibility Check** | Free | Check if AI can see your site |
+| **Quick Fix Guide** | £9.99 | Step-by-step fix guide only |
+| **Full SEO Audit + Guide** | £19.99 | Complete audit + fix guide |
+
+---
+
+## 🛠️ Products
+
+### PageForge — Landing Page Builder
+
+**Create professional landing pages in minutes.**
+
+- 6 colour themes
+- 8 demo blueprints
+- 4 pricing tiers
+- No coding required
+
+[Try PageForge →](https://page-forge-builder-djp2.vercel.app)
+
+---
+
+### VicMailer — Email Outreach System
+
+**Automated lead generation and email outreach.**
+
+- Scrape leads from websites
+- Send automated email campaigns
+- Batch email processing
+- White-label ready
+
+*Contact for pricing.*
+
+---
+
+## 📊 How It Works
+
+| Step | Action |
+|------|--------|
+| 1 | Enter your website URL and email |
+| 2 | Vic scans your site for SEO issues |
+| 3 | You receive a score and issues list |
+| 4 | Apply the fixes and improve your ranking |
+
+---
+
+## 🛠️ Tech Stack
+
+| Frontend | Backend | Deployment |
+|----------|---------|------------|
+| HTML/CSS | Python Flask | Vercel |
+| JavaScript | Node.js | Cloud Run |
+| Tailwind CSS | Brevo SMTP | GitHub |
+| - | CashClaw | - |
+
+---
+
+## 📦 Installation
+
+### Clone the repository
+
+```bash
+git clone https://github.com/djp1122222-alt/fixseo.git
+cd fixseo
+
