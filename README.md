@@ -24,7 +24,7 @@
 - No calls. No meetings. No subscriptions.
 
 ### 🤖 AI Visibility Check
-- See if AI search engines (ChatGPT, Perplexity) can find your site
+- See if AI search engines (Gemini, ChatGPT, Perplexity) can find your site
 - Check for AI crawler blocking
 - Free visibility report
 
