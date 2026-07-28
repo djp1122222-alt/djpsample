@@ -13,7 +13,7 @@ Fixseo is an automated SEO audit service that delivers a complete website audit 
 ## Products
 - PageForge: https://page-forge-builder-pearl.vercel.app
 - vSecure: https://v-secure-beige.vercel.app
-- VicMailer: https://vic-mailer-app.vercel.app
+- VicMailer: https://vic-mailer-app-v2.vercel.app
 - GEO Scan: https://geo-scan-rose.vercel.app
 
 ## Contact
