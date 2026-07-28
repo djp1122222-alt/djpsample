@@ -4,7 +4,7 @@
 Fixseo is an automated SEO audit service that delivers a complete website audit report in 5 seconds.
 
 ## Services
-- Free AI Visibility Check
+- Free AI Visibility Check (free)
 - Full SEO Audit + Quick Fix Guide (£19.99)
 - Quick Fix Guide (£9.99)
 - PageForge — Landing Page Builder (£19.99+)
