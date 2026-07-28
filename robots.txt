@@ -1,20 +1,23 @@
+# Default rules for standard search engines (Google, Bing, etc.)
 User-agent: *
 Allow: /
 
-# Allow major AI crawlers
+# Block AI training crawlers
 User-agent: GPTBot
-Allow: /
+Disallow: /
 
 User-agent: ClaudeBot
-Allow: /
+Disallow: /
 
 User-agent: Google-Extended
-Allow: /
+Disallow: /
 
+# Allow real-time search and citation crawlers
 User-agent: OAI-SearchBot
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://fixseo.uk/sitemap.txt
+Sitemap: https://fixseo.uk
+
