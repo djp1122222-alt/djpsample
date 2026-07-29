@@ -4,13 +4,13 @@ Allow: /
 
 # Block AI training crawlers
 User-agent: GPTBot
-Disallow: /
+Allow: /
 
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
 
 User-agent: Google-Extended
-Disallow: /
+Allow: /
 
 # Allow real-time search and citation crawlers
 User-agent: OAI-SearchBot
