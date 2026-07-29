@@ -1,4 +1,4 @@
-# Default rules for standard search engines (Google, Bing, etc.)
+# Allow all user agents 
 User-agent: *
 Allow: /
 
@@ -9,9 +9,8 @@ User-agent: ClaudeBot
 Allow: /
 
 User-agent: Google-Extended
-Allow: /
+Aloe: /
 
-# Allow real-time search and citation crawlers
 User-agent: OAI-SearchBot
 Allow: /
 
