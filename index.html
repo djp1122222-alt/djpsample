@@ -1,22 +1,6 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
-    window.onerror = function(msg, url, lineNo, columnNo, error) {
-      if (msg === 'Script error.' || !url || url.indexOf(window.location.origin) === -1) {
-        return true;
-      }
-    };
-    window.addEventListener('error', function(e) {
-      if (e.message === 'Script error.' || !e.filename || (e.filename && e.filename.indexOf(window.location.origin) === -1)) {
-        if (e.preventDefault) e.preventDefault();
-        return true;
-      }
-    }, true);
-    window.addEventListener('unhandledrejection', function(e) {
-      if (e.preventDefault) e.preventDefault();
-    });
-  </script>
   
   <script src='https://cdn.jotfor.ms/agent/embedjs/019d8e3cfee97b1293e451a14bf6f786f954/embed.js' async defer></script>
   <meta charset="UTF-8">
@@ -56,6 +40,7 @@
 
   <!-- Meta Description -->
   <meta name="description" content="Automated SEO audits and AI visibility checks for websites. Get a score, issues list, and fix guide in 5 seconds. No calls. No meetings. No subscription. Straight forward free AI Visibility check or a full paid SEO Audit. Delivered to your inbox in seconds. If your website has issues its best to start with a SEO Audit. Find out fast whats holding your website back. The First step in getting your SEO back on track. Trusted by small business owners and agencies." />
+</head>
 
   <script type="application/ld+json">
   {
@@ -344,36 +329,40 @@
 <img src="IMG_9720.jpeg" alt="FixSEO logo" style="max-width: 250px; height: 250px;" loading="lazy"/>
 
 <div class="badge">⚡ POWERED BY VIC SEO Specialist</div>
-<h1>Website SEO Audits</h1>
+<h1>Automated Website SEO Audits</h1>
 <h2 style="font-size:2rem;" class="gradient-text">IN 5 SECONDS</h2>
 
-<p>Get a score, issues list, and fix guide in 5 seconds delivered straight to your inbox. No calls. No meetings.</p>
+<p>Automated SEO audits get a score, issues list, and fix guide in 5 seconds delivered straight to your inbox. No calls. No meetings.</p>
 
 <a href="https://fixseo.gumroad.com/l/pyazj" class="btn">BUY NOW — £19.99</a>
 
 <!-- WIDGET SECTION -->
 <div class="widget-container">
-  <h3>🌍 FREE AI Visibility + GEO Scan</h3>
-  <p style="font-size:0.85rem; margin-bottom:16px;">Check if AI search engines can see your site.</p>
+  <h3>Try the FREE AI Visibility Check</h3>
+  <input id="vic-free-url" type="url" placeholder="https://yourwebsite.com" />
+  <input id="vic-free-email" type="email" placeholder="your@email.com" />
+  <button onclick="triggerFreeVicAudit()">Run Free Check</button>
+  <p>No spam. No calls. Report in 5 seconds.</p>
+</div>
+
+<div class="section" style="max-width: 800px; margin: 0 auto;">
+  <h2>How Our Free AI Visibility Checker Works</h2>
+  <p>In 2026, AI search engines like ChatGPT, Gemini, and Perplexity are changing how people find information online. Traditional SEO tools only check Google rankings - but what if AI search engines can't even see your site?</p>
   
-  <a href="https://geo-scan-rose.vercel.app" 
-     target="_blank"
-     rel="noopener noreferrer"
-     style="
-       display: inline-block;
-       padding: 14px 48px;
-       background: linear-gradient(135deg, #22d3ee, #e879f9);
-       color: #050510;
-       font-weight: bold;
-       font-size: 1.2rem;
-       border-radius: 8px;
-       text-decoration: none;
-       box-shadow: 0 0 30px rgba(34, 211, 238, 0.3);
-     "
-  >
-    🚀 Get Free Scan
-  </a>
-  <p style="margin-top:16px;">No spam. No calls. Results in 5 seconds.</p>
+  <p>Our free AI Visibility Checker scans your website to see if AI crawlers can access and understand your content. We check your robots.txt file, site structure, and content formatting to determine if AI search engines can index your pages properly.</p>
+  
+  <p>If AI crawlers are blocked or your content isn't structured correctly, you're invisible to the millions of people using AI search engines daily. Our scan identifies these issues in seconds - completely free.</p>
+  
+  <p><strong>What the scan checks:</strong></p>
+  <ul style="list-style: disc; padding-left: 20px; color: #ffffff;">
+    <li>Robots.txt status (are AI crawlers blocked or allowed?)</li>
+    <li>Content structure (can AI understand your content?)</li>
+    <li>Schema markup (do you have structured data for AI?)</li>
+    <li>ChatGPT visibility (can ChatGPT access your content?)</li>
+    <li>Gemini compatibility (how does Google's AI see your site?)</li>
+  </ul>
+  
+  <p style="margin-top: 20px;">No sign-up required. No spam. Just instant results in 5 seconds.</p>
 </div>
 
   <div class="section">
@@ -439,26 +428,6 @@
     <p style="color: #22d3ee; font-size: 0.8rem; margin-top: 15px;">Full report delivered to your inbox in 5 seconds.</p>
   </div>
 
-<div class="section" style="max-width: 800px; margin: 0 auto;">
-  <h2>How Our Free AI Visibility Checker Works</h2>
-  <p>In 2026, AI search engines like ChatGPT, Gemini, and Perplexity are changing how people find information online. Traditional SEO tools only check Google rankings - but what if AI search engines can't even see your site?</p>
-  
-  <p>Our free AI Visibility Checker scans your website to see if AI crawlers can access and understand your content. We check your robots.txt file, site structure, and content formatting to determine if AI search engines can index your pages properly.</p>
-  
-  <p>If AI crawlers are blocked or your content isn't structured correctly, you're invisible to the millions of people using AI search engines daily. Our scan identifies these issues in seconds - completely free.</p>
-  
-  <p><strong>What the scan checks:</strong></p>
-  <ul style="list-style: disc; padding-left: 20px; color: #ffffff;">
-    <li>Robots.txt status (are AI crawlers blocked or allowed?)</li>
-    <li>Content structure (can AI understand your content?)</li>
-    <li>Schema markup (do you have structured data for AI?)</li>
-    <li>ChatGPT visibility (can ChatGPT access your content?)</li>
-    <li>Gemini compatibility (how does Google's AI see your site?)</li>
-  </ul>
-  
-  <p style="margin-top: 20px;">No sign-up required. No spam. Just instant results in 5 seconds.</p>
-</div>
-
   <!-- SECOND BUY BUTTON -->
   <a href="https://fixseo.gumroad.com/l/pyazj" class="btn">BUY NOW — £19.99</a>
 
@@ -491,9 +460,23 @@
     <div class="faq-item"><h3>Refund policy?</h3><p>Full refund if report fails to deliver.</p></div>
   </div>
 
-  <div style="padding: 20px 0;">
-    <!-- footer content -->
-  </div>
+<div class="widget-container" style="margin-top: 40px;">
+  <h3>🚀 PageForge — Landing Page Generator</h3>
+  <p style="font-size: 0.9rem; margin-bottom: 15px;">6 themes, 8 blueprints, 4 pricing tiers. Build your landing page in minutes.</p>
+  <a href="https://page-forge-builder-pearl.vercel.app" class="btn" style="display: block; text-align: center;">Build Your Landing Page</a>
+  <p style="font-size: 0.75rem; margin-top: 10px; color: #64748b;">Try it free. Pay when you download.</p>
+</div>
+
+<div class="widget-container" style="margin-top: 20px;">
+  <h3>🔒 vSecure — Security Scanner</h3>
+  <p style="font-size: 0.9rem; margin-bottom: 15px;">Passive security scanning with OWASP checks and AI remediation.</p>
+  <a href="https://v-secure-beige.vercel.app" class="btn" style="display: block; text-align: center;">Scan Your Site</a>
+  <p style="font-size: 0.75rem; margin-top: 10px; color: #64748b;">£0.99 per scan.</p>
+</div>
+  
+<div style="padding: 20px 0;">
+  <!-- footer content -->
+</div>
   
   <div class="trust-badges">
     <span>⚡ 5 SECOND DELIVERY</span>
@@ -548,74 +531,61 @@
 
 
   <script>
-    function runGEOScanWidget(evt) {
-      if (evt && evt.preventDefault) {
-        evt.preventDefault();
-      }
+    function triggerFreeVicAudit() {
+      var url = document.getElementById('vic-free-url').value;
+      var email = document.getElementById('vic-free-email').value;
 
-      var urlInput = document.getElementById('geo-widget-url');
-      var url = urlInput ? urlInput.value.trim() : '';
-
-      if (!url) {
-        alert('Please enter a website URL.');
+      if (!url || !email) {
+        alert('Please enter both URL and email.');
         return;
       }
 
-      if (!/^https?:\/\//i.test(url)) {
-        url = 'https://' + url;
-      }
-
+      // Validate URL
       try {
         new URL(url);
       } catch (_) {
-        alert('Please enter a valid URL.');
+        alert('Please enter a valid URL (e.g., https://example.com)');
         return;
       }
 
-      var btn = document.getElementById('geo-scan-btn') || 
-                (evt && evt.target) || 
-                (window.event && window.event.target) || 
-                document.querySelector('.widget-container button');
-
-      var originalText = btn ? btn.textContent : 'Run Free Scan';
-      if (btn) {
-        btn.textContent = 'Scanning...';
-        btn.disabled = true;
+      // Validate email
+      if (!email.includes('@') || !email.includes('.')) {
+        alert('Please enter a valid email address.');
+        return;
       }
 
-      fetch('https://vic.a.pinggy.link/v1/geoscan', {
+      var btn = event.target;
+      var originalText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      fetch('https://vic.a.pinggy.link/v1/audit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'X-API-Key': 'vic-free-key-2025'
         },
-        body: JSON.stringify({ url: url })
+        body: JSON.stringify({ url: url, email: email })
       })
       .then(function(response) {
-        if (!response.ok) throw new Error('API error: ' + response.status);
+        if (!response.ok) {
+          throw new Error('API error: ' + response.status);
+        }
         return response.json();
       })
       .then(function(data) {
-        alert('✅ GEO Scan complete!');
-        if (urlInput) urlInput.value = '';
+        alert('✅ Audit triggered! Check your email.');
+        document.getElementById('vic-free-url').value = '';
+        document.getElementById('vic-free-email').value = '';
       })
       .catch(function(error) {
-        alert('❌ Service unavailable. Please try again later.');
+        alert('❌ The audit service is currently unavailable. Please try again later.');
       })
       .finally(function() {
-        if (btn) {
-          btn.textContent = originalText;
-          btn.disabled = false;
-        }
+        btn.textContent = originalText;
+        btn.disabled = false;
       });
     }
-
-    window.runGEOScanWidget = runGEOScanWidget;
   </script>
 
 <script src='https://cdn.jotfor.ms/agent/embedjs/019d8e3cfee97b1293e451a14bf6f786f954/embed.js'></script>
-  
-</body>
-</html>
-
- 
